@@ -31,7 +31,7 @@ RUN \
 ENV PATH "${haskell_builder_prefix}:$PATH"
 
 # Seed the cache with some common libs that have many deps
-ARG resolver="lts-9.12"
+ARG resolver="lts-9.13"
 ARG packages="conduit wreq"
 
 # cache the downloads separately ...
