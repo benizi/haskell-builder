@@ -11,10 +11,6 @@ RUN sed -i -e 's%[^/]*\(/[^/]*\)$%edge\1%' /etc/apk/repositories
 # Things needed to build Haskell libraries
 RUN apk add --no-cache ghc cabal curl musl-dev zlib-dev git linux-headers
 
-# Non-`stack` items
-RUN cabal update
-RUN cabal install hpack
-
 # Install `stack`, but STFU about my rc files
 RUN \
   curl -sSL https://get.haskellstack.org/ | \
