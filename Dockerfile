@@ -29,3 +29,12 @@ RUN \
 
 # Add it to the default PATH
 ENV PATH "${haskell_builder_prefix}:$PATH"
+
+# Seed the cache with some common libs that have many deps
+ARG resolver="lts-9.12"
+ARG packages="conduit wreq"
+
+# cache the downloads separately ...
+RUN stack --resolver ${resolver} build --prefetch --dry-run ${packages}
+# ... then build the selected packages
+RUN stack --resolver ${resolver} build ${packages}
